@@ -2,10 +2,14 @@ package com.example.android.newsapp;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.widget.TextView;
 
 public class ArticleLoader extends AsyncTaskLoader {
 
     private String mUrl;
+
 
     @Override
     public Object loadInBackground() {
@@ -22,8 +26,10 @@ public class ArticleLoader extends AsyncTaskLoader {
 
     @Override
     protected void onStartLoading() {
+
         forceLoad();
     }
+
 
 
 }

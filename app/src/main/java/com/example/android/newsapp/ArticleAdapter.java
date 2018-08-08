@@ -35,7 +35,7 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
 
 
         title.setText(article.getmTitle());
-        author.setText(R.string.written_by + article.getmAuthor());
+        author.setText(getContext().getString(R.string.written_by) + " " + article.getmAuthor());
         date.setText(article.getmDate());
 
         return articleView;

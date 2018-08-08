@@ -23,27 +23,28 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     ArticleAdapter articleAdapter;
     TextView emptyText;
     ProgressBar progressBar;
-    boolean isConnected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         emptyText = findViewById(R.id.empty_text);
         progressBar = findViewById(R.id.progress_bar);
 
         articleAdapter = new ArticleAdapter(this, new ArrayList<Article>());
         ListView listView = findViewById(R.id.list);
         listView.setAdapter(articleAdapter);
-
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
         listView.setEmptyView(emptyText);
 
-        LoaderManager loaderManager = getLoaderManager();
-        loaderManager.initLoader(ARTICLE_LOADER_ID, null, this);
+        if (isConnected()) {
+            LoaderManager loaderManager = getLoaderManager();
+            loaderManager.initLoader(ARTICLE_LOADER_ID, null, this);
+        } else {
+            // Hide the progress bar.
+            progressBar.setVisibility(View.INVISIBLE);
+            emptyText.setText(getString(R.string.no_internet_connection_message));
+            // inform the user that there is no connection
+        }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }else
             emptyText.setText(R.string.no_articles_message);
         progressBar.setVisibility(View.INVISIBLE);
-        if(!isConnected){
+        if(!isConnected()){
             emptyText.setText(R.string.no_internet_connection_message);
         }
     }
@@ -81,6 +82,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoaderReset(Loader<ArrayList<Article>> loader) {
         articleAdapter.clear();
+    }
+
+     boolean isConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return  activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 
 }
