@@ -18,10 +18,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<Article>> {
 
-    public static final String NEWS_URL = "htps://content.guardianapis.com/search?q=fashion|makeup|lifestyle|sport&show-fields=thumbnail&show-tags=contributor&api-key=562c24cc-e65d-48fb-85e1-f3f1e9e70f72";
+    public static final String NEWS_URL = "https://content.guardianapis.com/search?q=fashion|makeup|lifestyle|sport&show-fields=thumbnail&show-tags=contributor&api-key=562c24cc-e65d-48fb-85e1-f3f1e9e70f72";
     public static final int ARTICLE_LOADER_ID = 1;
     ArticleAdapter articleAdapter;
-    TextView emptyText = findViewById(R.id.empty_text);
+    TextView emptyText;
     ProgressBar progressBar;
     boolean isConnected;
 
