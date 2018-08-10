@@ -1,5 +1,6 @@
 package com.example.android.newsapp;
 
+import android.content.res.Resources;
 import android.text.TextUtils;
 import android.util.Log;
 import org.json.JSONArray;
@@ -24,7 +25,7 @@ final class Utils {
         try {
             url = new URL(stringUrl);
         } catch (MalformedURLException e) {
-            Log.e("Utils", "Error with creating URL.");
+            Log.e("Utils", "error URL");
         }
         return url;
     }
@@ -50,10 +51,10 @@ final class Utils {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
             } else {
-                Log.e("Utils ", "Error response code: " + urlConnection.getResponseCode());
+                Log.e("Utils", "Error response code"+ urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e("Utils", "Problem retrieving the news JSON results.");
+            Log.e("Utils", "problem JSON");
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -109,7 +110,7 @@ final class Utils {
                     JSONObject firstObjectTags = tags.getJSONObject(0);
                     writer = firstObjectTags.getString("webTitle");
                 } else
-                    writer = "Unknown author";
+                    writer = "Unknown Author";
 
                 String sectionName = currentFeature.getString("sectionName");
                 String writerAndSection = writer + " in " + sectionName;
@@ -120,7 +121,7 @@ final class Utils {
             }
 
         } catch (JSONException e) {
-            Log.e("Utils: ", "Problem parsing the article JSON results", e);
+            Log.e("Utils: ", "Problem retrieving the news JSON results.", e);
         }
         return articles;
     }

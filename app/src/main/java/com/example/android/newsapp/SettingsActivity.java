@@ -21,8 +21,8 @@ public class SettingsActivity extends AppCompatActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_main);
-            Preference topic = findPreference("topic");
-            setSummaryToPreference(topic, "topic");
+            Preference topic = findPreference(getString(R.string.topic));
+            setSummaryToPreference(topic, getString(R.string.topic));
 
         }
 
@@ -42,7 +42,7 @@ public class SettingsActivity extends AppCompatActivity {
         private void setSummaryToPreference(Preference preferences , String preferenceStringValue) {
             preferences.setOnPreferenceChangeListener(this);
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(preferences.getContext());
-            String value = sharedPreferences.getString(preferenceStringValue, "");
+            String value = sharedPreferences.getString(preferenceStringValue, getString(R.string.space));
             onPreferenceChange(preferences, value);
         }
     }

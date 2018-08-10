@@ -3,6 +3,6 @@
     <ListPreference
         android:entries="@array/settings_show_labels"
         android:entryValues="@array/settings_show_keys"
-        android:key="topic"
-        android:title="Show" />
+        android:key="@string/topic"
+        android:title="@string/show" />
 </PreferenceScreen>

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<Article>> {
 
-    public static final String NEWS_URL = "https://content.guardianapis.com/search";
+    public static final String NEWS_URL ="https://content.guardianapis.com/search";
     public static final int ARTICLE_LOADER_ID = 1;
     ArticleAdapter articleAdapter;
     TextView emptyText;
@@ -85,16 +86,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public Loader<ArrayList<Article>> onCreateLoader(int i, Bundle bundle) {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String topic = sharedPrefs.getString("topic","");
+        String topic = sharedPrefs.getString(getString(R.string.topic),getString(R.string.space));
         Uri baseUri = Uri.parse(NEWS_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
-        uriBuilder.appendQueryParameter("order-by", "newest");
-        uriBuilder.appendQueryParameter("page-size", "15");
-        uriBuilder.appendQueryParameter("show-tags", "contributor");
-        uriBuilder.appendQueryParameter("q", topic);
-        uriBuilder.appendQueryParameter("api-key", "562c24cc-e65d-48fb-85e1-f3f1e9e70f72");
-        Log.e("MAINACTIVITY", uriBuilder.toString());
-
+        uriBuilder.appendQueryParameter(getString(R.string.order_by), getString(R.string.newest));
+        uriBuilder.appendQueryParameter(getString(R.string.page_size), getString(R.string.num_pages));
+        uriBuilder.appendQueryParameter(getString(R.string.show_tags), getString(R.string.contributor));
+        uriBuilder.appendQueryParameter(getString(R.string.q), topic);
+        uriBuilder.appendQueryParameter(getString(R.string.api_key), getString(R.string.key));
 
         return new ArticleLoader(this, uriBuilder.toString());
     }

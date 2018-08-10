@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="settings_show_labels">
-        <item>Politics</item>
-        <item>Travel</item>
-        <item>Makeup</item>
-        <item>Sport</item>
-        <item>Technology</item>
+        <item>@string/politics_caps</item>
+        <item>@string/travel_caps</item>
+        <item>@string/makeup_caps</item>
+        <item>@string/sport_caps</item>
+        <item>@string/tech_caps</item>
     </string-array>
     <string-array name="settings_show_keys">
-        <item>politics</item>
-        <item>travel</item>
-        <item>makeup</item>
-        <item>sport</item>
-        <item>technology</item>
+        <item>@string/politics</item>
+        <item>@string/travel</item>
+        <item>@string/makeup</item>
+        <item>@string/sport</item>
+        <item>@string/tech</item>
     </string-array>
 
 </resources>
