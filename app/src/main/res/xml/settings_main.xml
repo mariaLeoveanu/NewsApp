@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <ListPreference
-        android:defaultValue="relevant"
         android:entries="@array/settings_show_labels"
-        android:entryValues="@array/settings_show_labels"
+        android:entryValues="@array/settings_show_keys"
         android:key="topic"
         android:title="Show" />
 </PreferenceScreen>

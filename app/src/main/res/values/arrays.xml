@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="settings_show_labels">
-        <item>Fashion</item>
         <item>Politics</item>
+        <item>Travel</item>
+        <item>Makeup</item>
+        <item>Sport</item>
+        <item>Technology</item>
+    </string-array>
+    <string-array name="settings_show_keys">
+        <item>politics</item>
+        <item>travel</item>
+        <item>makeup</item>
+        <item>sport</item>
+        <item>technology</item>
     </string-array>
 
 </resources>

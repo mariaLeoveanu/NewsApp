@@ -8,10 +8,10 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -85,12 +85,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public Loader<ArrayList<Article>> onCreateLoader(int i, Bundle bundle) {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String topic = sharedPrefs.getString("topic","fashion|politics");
+        String topic = sharedPrefs.getString("topic","");
         Uri baseUri = Uri.parse(NEWS_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
-        uriBuilder.appendQueryParameter("?q", topic);
+        uriBuilder.appendQueryParameter("order-by", "newest");
+        uriBuilder.appendQueryParameter("page-size", "15");
         uriBuilder.appendQueryParameter("show-tags", "contributor");
+        uriBuilder.appendQueryParameter("q", topic);
         uriBuilder.appendQueryParameter("api-key", "562c24cc-e65d-48fb-85e1-f3f1e9e70f72");
+        Log.e("MAINACTIVITY", uriBuilder.toString());
 
 
         return new ArticleLoader(this, uriBuilder.toString());
